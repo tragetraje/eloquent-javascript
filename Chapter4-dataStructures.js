@@ -73,7 +73,6 @@ function reverseArray(array) {
   }
   return reversedArray;
 }
-ls
 
 console.log(reverseArray(["A", "B", "C"])); // → ["C", "B", "A"];
 console.log(reverseArray([1, 2, 5, 7]));
@@ -97,3 +96,27 @@ Write a function arrayToList that builds up a data structure like the previous o
 
 If you haven’t already, also write a recursive version of nth.
 */
+
+function arrayToList(array) {
+  var list = 0;
+  for (var i = array.length - 1; i >= 0; i--) {
+    list = {
+      value: array[i],
+      rest: list
+    };
+  }
+  return list;
+}
+
+console.log(arrayToList([1, 2, 3]));
+
+function listToArray(list) {
+  var array = [];
+  for (var node = list; node; node = node.rest) {
+    array.push(node.value);
+  }
+  return array;
+}
+
+console.log(listToArray(arrayToList([10, 20, 30])));
+// → [10, 20, 30]
