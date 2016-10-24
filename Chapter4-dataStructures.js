@@ -120,3 +120,40 @@ function listToArray(list) {
 
 console.log(listToArray(arrayToList([10, 20, 30])));
 // → [10, 20, 30]
+
+function prepend(element, list) {
+  list = {
+    value: element,
+    rest: list
+  };
+  return list;
+}
+
+console.log(prepend(10, prepend(20, null)));
+// → {value: 10, rest: {value: 20, rest: null}}
+
+function nth(list, number) {
+  var array = [];
+  for (var node = list; node; node = node.rest) {
+    array.push(node.value);
+  }
+  return array[number];
+}
+
+console.log(nth(arrayToList([10, 20, 30]), 1));
+// → 20
+
+// Recursive version of nth
+
+function nth(list, number) {
+  if (!list) {
+    return undefined;
+  } else if (number == 0) {
+    return list.value;
+  } else {
+    return nth(list.rest, number - 1);
+  }
+}
+
+console.log(nth(arrayToList([10, 20, 30]), 1));
+// → 20
